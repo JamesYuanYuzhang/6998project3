@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: CD Demo Lambda
+Resources:
+  hw3:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: LF1_hw3
+      Handler: LF1.lambda_handler
+      Runtime: python3.6
+      CodeUri: ./LambdaCode
+      Description: 'Lambda function for CD Demo'
+      MemorySize: 128
+      Timeout: 30
+      Role: 'arn:aws:iam::226949131441:role/service-role/hw3_LF1-role-i27xgj0z'
+      Events:
+        AIPhotoSearchput:
+          Type: Api
+          Properties:
+            Path: /getazs
+            Method: get
+      Environment:
+        Variables:
+          REGION: us-east-1
